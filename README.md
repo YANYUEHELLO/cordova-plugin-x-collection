@@ -1,1 +1,1 @@
-# cordova-plugin-version-check
+# cordova-plugin-x-collection

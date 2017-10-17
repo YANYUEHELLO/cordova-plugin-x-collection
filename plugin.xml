@@ -1,7 +1,19 @@
 <?xml version='1.0' encoding='utf-8'?>
-<plugin id="cordova-plugin-version-check" version="1.0.0" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
-    <name>cordova-plugin-version-check</name>
-    <js-module name="cordova-plugin-version-check" src="www/cordova-plugin-version-check.js">
-        <clobbers target="cordova.plugins.cordova-plugin-version-check" />
+<plugin id="cordova-plugin-x-collection" version="1.0.0" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+    <name>cordova-plugin-x-collection</name>
+    <js-module name="cordova-plugin-x-collection" src="www/cordova-plugin-x-collection.js">
+        <clobbers target="XCollection" />
     </js-module>
+
+    <platform name="ios">
+        <config-file parent="/*" target="config.xml">
+            <feature name="CDVCollection">
+                <param name="ios-package" value="CDVCollection"/>
+            </feature>
+        </config-file>
+
+        <!-- plugin source code -->
+        <header-file src="src/ios/CDVCollection.h"/>
+        <source-file src="src/ios/CDVCollection.m"/>
+    </platform>
 </plugin>
