@@ -45,8 +45,8 @@ if (navigator && XCollection) {
 }
 
 ```
-
-http://oweglvqu7.bkt.clouddn.com/blog/2017-10-17-8798ED88-4EA6-4A4D-B0C0-15E16ADF4809.png
+![image]
+(http://oweglvqu7.bkt.clouddn.com/blog/2017-10-17-8798ED88-4EA6-4A4D-B0C0-15E16ADF4809.png)
 
 ```Javascript
 
