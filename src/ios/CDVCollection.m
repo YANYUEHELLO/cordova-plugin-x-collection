@@ -2,7 +2,7 @@
  * @Author: 玖叁(N.T) 
  * @Date: 2017-10-17 13:43:05 
  * @Last Modified by: 玖叁(N.T)
- * @Last Modified time: 2017-10-17 16:12:51
+ * @Last Modified time: 2017-10-30 17:02:59
  */
 
 #import "CDVCollection.h"
@@ -16,6 +16,8 @@
         NSString *str2 = [NSString stringWithFormat: @"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id;=%@",
                           appID];
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str2]];
+    } else {
+        [self failWithCallbackID:command.callbackId withMessage:@"Not find application in app store!"];
     }
 }
 
@@ -38,7 +40,6 @@
     if (version != nil) {
         [self successWithCallbackID:command.callbackId withMessage:version];
     } else {
-        [self failWithCallbackID:command.callbackId withMessage:@"can't get app info"];
         [self failWithCallbackID:command.callbackId withMessage:@"Not find application in app store!"];
     }
 }
