@@ -2,18 +2,24 @@
  * @Author: 玖叁(N.T) 
  * @Date: 2017-10-17 13:43:05 
  * @Last Modified by: 玖叁(N.T)
- * @Last Modified time: 2017-10-30 17:02:59
+ * @Last Modified time: 2017-11-11 21:34:09
  */
 
 #import "CDVCollection.h"
 
 @implementation CDVCollection
 - (void)goCommentPage:(CDVInvokedUrlCommand *)command {
-    NSNumber *appID = [self getAppInfoByBundleID:@"trackId"];
+    NSNumber *appID;
+    NSDictionary *params = [command.arguments objectAtIndex:0];
+    if ([params objectForKey:@"appID"]) {
+        appID = [params objectForKey:@"appID"];
+    } else {
+        appID = [self getAppInfoByBundleID:@"trackId"];;
+    }
     
     if (appID != nil) {
         // 跳轉到評價頁面
-        NSString *str2 = [NSString stringWithFormat: @"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id;=%@",
+        NSString *str2 = [NSString stringWithFormat: @"itms-apps://itunes.apple.com/cn/app/id%@?mt=8",
                           appID];
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str2]];
     } else {
@@ -22,7 +28,13 @@
 }
 
 - (void)goUpdateVersionPage:(CDVInvokedUrlCommand *)command {
-    NSNumber *appID = [self getAppInfoByBundleID:@"trackId"];
+    NSNumber *appID;
+    NSDictionary *params = [command.arguments objectAtIndex:0];
+    if ([params objectForKey:@"appID"]) {
+        appID = [params objectForKey:@"appID"];
+    } else {
+        appID = [self getAppInfoByBundleID:@"trackId"];;
+    }
     
     if (appID != nil) {
         // 跳轉到應用頁面
@@ -31,7 +43,6 @@
     } else {
         [self failWithCallbackID:command.callbackId withMessage:@"Not find application in app store!"];
     }
-    
 }
 
 - (void)getVersion:(CDVInvokedUrlCommand *)command {
