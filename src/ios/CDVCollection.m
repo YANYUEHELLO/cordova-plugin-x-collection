@@ -2,7 +2,7 @@
  * @Author: 玖叁(N.T) 
  * @Date: 2017-10-17 13:43:05 
  * @Last Modified by: 玖叁(N.T)
- * @Last Modified time: 2017-11-11 21:34:09
+ * @Last Modified time: 2017-11-15 14:15:35
  */
 
 #import "CDVCollection.h"
@@ -38,7 +38,7 @@
     
     if (appID != nil) {
         // 跳轉到應用頁面
-        NSString *str = [NSString stringWithFormat:@"http://itunes.apple.com/us/app/id%@", appID];
+        NSString *str = [NSString stringWithFormat:@"http://itunes.apple.com/cn/us/app/id%@", appID];
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
     } else {
         [self failWithCallbackID:command.callbackId withMessage:@"Not find application in app store!"];
@@ -62,7 +62,7 @@
 - (id)getAppInfoByBundleID:(NSString *)key {
     NSDictionary *appInfo = nil;
     NSString *bundleID = [[NSBundle mainBundle] objectForInfoDictionaryKey:(NSString*)kCFBundleIdentifierKey];
-    NSString *strURL = [NSString stringWithFormat:@"https://itunes.apple.com/lookup?bundleId=%@", bundleID];
+    NSString *strURL = [NSString stringWithFormat:@"https://itunes.apple.com/cn/lookup?bundleId=%@", bundleID];
     NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:strURL]];
     
     NSDictionary *dic = [self objectFromJSONDat:data];
