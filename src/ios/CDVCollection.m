@@ -38,7 +38,7 @@
     
     if (appID != nil) {
         // 跳轉到應用頁面
-        NSString *str = [NSString stringWithFormat:@"http://itunes.apple.com/cn/us/app/id%@", appID];
+        NSString *str = [NSString stringWithFormat:@"http://itunes.apple.com/cn/us/app/id%@?mt=8", appID];
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
     } else {
         [self failWithCallbackID:command.callbackId withMessage:@"Not find application in app store!"];
