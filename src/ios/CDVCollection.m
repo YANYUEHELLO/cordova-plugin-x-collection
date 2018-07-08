@@ -21,6 +21,8 @@
         // 跳轉到評價頁面
         NSString *str2 = [NSString stringWithFormat: @"itms-apps://itunes.apple.com/cn/app/id%@?mt=8",
                           appID];
+        //跳转到评论撰写界面
+        //NSString *str2 = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/app/id%@?action=write-review", appID];
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str2]];
     } else {
         [self failWithCallbackID:command.callbackId withMessage:@"Not find application in app store!"];
@@ -62,9 +64,16 @@
 - (id)getAppInfoByBundleID:(NSString *)key {
     NSDictionary *appInfo = nil;
     NSString *bundleID = [[NSBundle mainBundle] objectForInfoDictionaryKey:(NSString*)kCFBundleIdentifierKey];
-    NSString *strURL = [NSString stringWithFormat:@"https://itunes.apple.com/cn/lookup?bundleId=%@", bundleID];
+    //添加时间戳解决缓存
+    NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
+    NSTimeInterval a=[dat timeIntervalSince1970];
+    NSString *timeString = [NSString stringWithFormat:@"%.0f", a];//转为字符型
+    NSString *strURL = [NSString stringWithFormat:@"https://itunes.apple.com/cn/lookup?bundleId=%@&timeString=%@", bundleID,timeString];
+    // NSString *strURL = [NSString stringWithFormat:@"https://itunes.apple.com/cn/lookup?bundleId=%@", bundleID];
     NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:strURL]];
-    
+
+
+
     NSDictionary *dic = [self objectFromJSONDat:data];
     NSArray *resultArray = [dic objectForKey:@"results"];
     if ([resultArray count] > 0 && resultArray != nil) {
